@@ -1,0 +1,40 @@
+{
+    //az deployment group create --resource-group arm-template-demo --template-file  storage-account-param.json --parameters storageAcctNameParam=storageaccountatdemo1 skuNameParam=Standard_GRS
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAcctNameParam": {
+            "type": "string",
+            "defaultValue": "storageaccountatdemo",
+            "metadata": {
+                "description": "Name of the storage account"
+            },
+            "minLength": 3,
+            "maxLength":25
+
+        },
+        "skuNameParam": {
+            "type": "string",
+            "defaultValue": "Standard_GRS",
+            "metadata": {
+                "description": "Name of SKU for storage account"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+    {
+        "name": "[parameters('storageAcctNameParam')]",
+        "type": "Microsoft.Storage/storageAccounts",
+        "apiVersion": "2019-06-01",
+        "location": "[resourceGroup().location]",
+        "kind": "StorageV2",
+        "sku": {
+            "name": "[parameters('skuNameParam')]",
+            "tier": "Standard"
+        }
+    }
+    ],
+    "outputs": {}
+}
