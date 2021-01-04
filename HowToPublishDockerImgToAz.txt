@@ -1,0 +1,16 @@
+Create a template spring boot application through spring initializr
+Implement the logic
+Create a docker file
+Create an account on dockerhub with name akstiwari
+Create a docker hub repository hellobootdocker
+
+On terminal
+
+mvn clean
+mvn package
+
+docker login
+docker build -t akstiwari/hellobootdocker .
+docker tag 3dc3db7dfa81 akstiwari/hellobootdocker
+docker run -p 8080:8080 akstiwari/hellobootdocker
+docker push akstiwari/hellobootdocker
