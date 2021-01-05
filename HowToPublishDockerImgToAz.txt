@@ -11,8 +11,10 @@ mvn package
 
 docker login
 docker build -t akstiwari/hellobootdocker .
-docker tag 3dc3db7dfa81 akstiwari/hellobootdocker
+docker images
+docker tag <imageid> akstiwari/hellobootdocker
 docker run -p 8080:8080 akstiwari/hellobootdocker
+docker images
 docker push akstiwari/hellobootdocker
 
 
@@ -20,25 +22,30 @@ docker push akstiwari/hellobootdocker
 How to Publish key valult application to docker
 docker login
 docker build -t akstiwari/hellobootkeyvault .
-docker tag 99de5faccd84 akstiwari/hellobootkeyvault
+docker tag <imageid> akstiwari/hellobootkeyvault
 docker run -p 8080:8080 akstiwari/hellobootkeyvault
 docker images
 docker push akstiwari/hellobootkeyvault
 
 Create the app service
 Create managed identity for app service
-Create the key vault with name keyvalutdemokeyvault
+Create the key vault with name keyvalutdemokv1
 Add access policy
 
 
-<dependency>
-			<groupId>com.azure</groupId>
-			<artifactId>azure-security-keyvault-secrets</artifactId>
-			<version>4.2.3</version>
-		</dependency>
 
-		<dependency>
-			<groupId>com.azure</groupId>
-			<artifactId>azure-identity</artifactId>
-			<version>1.2.0</version>
-		</dependency>
+Create a SQL server - allow the azure services to connect
+Create SQL database - select basic compute and storage
+Add fire wall setting to add client ip (your desktop ip)
+Note connection string and configure it in application
+In query editor, execute the query - create table EMPLOYEE (ENAME VARCHAR(100), ESAL INTEGER);
+
+docker login
+docker build -t akstiwari/hellobootsql .
+docker images
+docker tag <imageid> akstiwari/hellobootsql
+docker run -p 8080:8080 akstiwari/hellobootsql
+docker push akstiwari/hellobootsql
+
+
+
